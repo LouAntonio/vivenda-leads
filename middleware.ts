@@ -5,7 +5,7 @@ import { verifyJwt } from './lib/auth';
 const protectedRoutes = ['/dashboard'];
 const publicRoutes = ['/login', '/'];
 
-export async function proxy(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route));
   const isPublicRoute = publicRoutes.includes(path) && !path.startsWith('/dashboard');
