@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .luxury-gradient {
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.2) 0%, rgba(10, 10, 10, 0) 100%);
+  }
+  .hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95));
+  }
+  /* Optional transition enhancements if needed */
+}
