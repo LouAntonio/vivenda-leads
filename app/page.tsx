@@ -5,6 +5,7 @@ import { Home, Briefcase, RefreshCcw, Flame, Clock, Search, DollarSign, Landmark
 
 export default function LandingPage() {
 	const [status, setStatus] = useState<{ message: string; type: 'idle' | 'loading' | 'success' | 'error' }>({ message: '', type: 'idle' });
+	const [showContent, setShowContent] = useState(false);
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -46,14 +47,23 @@ export default function LandingPage() {
 						Esta oportunidade em Luanda foi feita para si. Descubra a vivenda dos seus sonhos.
 					</p>
 					<a href="#form"
+						onClick={(e) => {
+							e.preventDefault();
+							setShowContent(true);
+							setTimeout(() => {
+								document.getElementById('form')?.scrollIntoView({ behavior: 'smooth' });
+							}, 100);
+						}}
 						className="inline-block bg-[#C5A059] text-black px-12 py-5 rounded-full font-bold text-lg hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-2xl shadow-[#C5A059]/20">
 						Verificar Qualificação
 					</a>
 				</div>
 			</header>
 
-			<section id="form" className="py-24 relative overflow-hidden bg-[#0A0A0A]">
-				<div className="container mx-auto px-6 max-w-4xl">
+			{showContent && (
+				<div className="animate-fade-in">
+					<section id="form" className="py-24 relative overflow-hidden bg-[#0A0A0A]">
+						<div className="container mx-auto px-6 max-w-4xl">
 					<div className="text-center mb-16 animate-slide-up">
 						<h2 className="text-3xl md:text-5xl font-bold mb-4">Primeiro Passo</h2>
 						<p className="text-gray-400 text-lg">Antes de continuar, precisamos garantir que esta vivenda faz sentido para si.</p>
@@ -224,6 +234,8 @@ export default function LandingPage() {
 					Obrigado pelo seu interesse!
 				</p>
 			</footer>
+				</div>
+			)}
 		</div>
 	);
 }
